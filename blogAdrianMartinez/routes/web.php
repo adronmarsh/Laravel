@@ -14,5 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return 'Hola soy Adrián Martínez, bienvenido a mi blog.';
+    // return view('welcome');
+})->name('inicio');
+
+Route::get('posts', function () {
+    return 'Listado de posts del blog';
+})->name('posts');
+
+Route::get('post/{id?}', function ($id = null) {
+    if ($id != null) {
+        return 'Este es el post: ' . $id;
+    } else {
+        return redirect(route('inicio'));
+    }
+})->whereNumber('id')->name('postID');
+
