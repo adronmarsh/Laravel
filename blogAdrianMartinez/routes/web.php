@@ -28,5 +28,5 @@ Route::get('post/{id?}', function ($id = null) {
     } else {
         return redirect(route('inicio'));
     }
-})->whereNumber('id')->name('postID');
+})->whereNumber('id')->name('postId');
 
