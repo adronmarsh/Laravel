@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\librosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return 'Hola soy Adrián Martínez, bienvenido a mi blog.';
-    // return view('welcome');
+    return view('inicio');
 })->name('inicio');
 
 Route::get('posts', function () {
@@ -24,9 +24,14 @@ Route::get('posts', function () {
 
 Route::get('post/{id?}', function ($id = null) {
     if ($id != null) {
-        return 'Este es el post: ' . $id;
+        return view('posts/post', compact('id'));
     } else {
         return redirect(route('inicio'));
     }
 })->whereNumber('id')->name('postId');
 
+Route::get('libros', [librosController::class,'listarLibros'] );
+
+Route::get('posts/listado', function () {
+    return view('posts.listado');
+})->name('posts.listado');
