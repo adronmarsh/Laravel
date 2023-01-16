@@ -3,5 +3,5 @@
 @section('title', 'Inicio')
 
 @section('content')
-    <p>hola</p>
+    <p>Soy Adrián Martínez, bienvenido a mi blog</p>
 @endsection

@@ -4,5 +4,5 @@
 
 @section('content')
     {{-- <a href="{{route('posts.editar')}}">Editar post</a> --}}
-    Hola
+    <a href="posts/{ {{ $id }} }/edit">Editar post</a>
 @endsection

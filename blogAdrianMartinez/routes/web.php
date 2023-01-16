@@ -20,18 +20,6 @@ Route::get('/', function () {
     return view('inicio');
 })->name('inicio');
 
-Route::get('posts', function () {
-    return 'Listado de posts del blog';
-})->name('posts');
-
-Route::get('post/{id?}', function ($id = null) {
-    if ($id != null) {
-        return view('posts.show', compact('id'));
-    } else {
-        return redirect(route('inicio'));
-    }
-})->whereNumber('id')->name('postId');
-
 Route::resource('posts', PostController::class)->parameters(['posts' => 'post'])
     ->names([
         'index' => 'posts.lista',
