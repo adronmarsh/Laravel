@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\librosController;
+use App\Http\Controllers\LibrosController;
+use App\Http\Controllers\OperacionesController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,14 +26,22 @@ Route::get('posts', function () {
 
 Route::get('post/{id?}', function ($id = null) {
     if ($id != null) {
-        return view('posts/post', compact('id'));
+        return view('posts.show', compact('id'));
     } else {
         return redirect(route('inicio'));
     }
 })->whereNumber('id')->name('postId');
 
-Route::get('libros', [librosController::class,'listarLibros'] );
+Route::resource('posts', PostController::class)->parameters(['posts' => 'post'])
+    ->names([
+        'index' => 'posts.lista',
+        'create' => 'posts.crear',
+        'show' => 'posts.mostrar',
+        'edit' => 'posts.editar'
+    ])->whereNumber('post');
 
-Route::get('posts/listado', function () {
-    return view('posts.listado');
-})->name('posts.listado');
+Route::get('libros', [LibrosController::class, 'listarLibros']);
+
+Route::get('listar10primos/{n}', [OperacionesController::class, 'listar10Primos']);
+
+Route::get('factorial/{numero}', [OperacionesController::class, 'factorial']);

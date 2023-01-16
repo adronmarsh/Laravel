@@ -14,8 +14,9 @@
     <div>
         @yield('content')
     </div>
-
-    @include('partials.pie')
+    <footer>
+        @include('partials.pie')
+    </footer>
 </body>
 
 </html>
