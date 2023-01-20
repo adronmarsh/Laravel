@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibrosController;
 use App\Http\Controllers\OperacionesController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SalesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,5 @@ Route::get('libros', [LibrosController::class, 'listarLibros']);
 Route::get('listar10primos/{n}', [OperacionesController::class, 'listar10Primos']);
 
 Route::get('factorial/{numero}', [OperacionesController::class, 'factorial']);
+
+Route::get('sales', SalesController::class);

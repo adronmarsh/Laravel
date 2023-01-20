@@ -2,7 +2,6 @@
     background-color: #333;
     color: #fff;
     padding: 2rem;
-    /*z-index: -100; */
 }
 
 .sidebar ul {
@@ -12,7 +11,7 @@
 }
 
 .sidebar ul li {
-    margin: 10px 0;
+    margin: 1rem 0;
 }
 
 .sidebar ul li a {
@@ -23,6 +22,7 @@
 }
 
 .sidebar ul li a:hover {
-    background-color: #555;
+    background-color: transparent;
+    color: #3e94d5;
     cursor: pointer;
 }

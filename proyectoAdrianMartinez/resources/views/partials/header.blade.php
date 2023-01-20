@@ -1,6 +1,6 @@
 <nav class="header">
     <img src="/media/logo.jpeg" alt="Logo de Ágora eSports">
-    <div>Ágora eSports</div>
+    <div><a href="/">Ágora eSports</a></div>
     <ul>
         <li>Registro</li>
         <li>Login</li>
