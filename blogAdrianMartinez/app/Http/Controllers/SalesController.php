@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+
 
 class SalesController extends Controller
 {
+    public function __invoke(){
+        //your code
+     }
     /**
      * Display a listing of the resource.
      *

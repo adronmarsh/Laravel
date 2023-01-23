@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class PostController extends Controller
 {
@@ -13,7 +14,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::all();
+        Paginator::useBootstrap();
+        $posts = Post::paginate(4);
+        return view('posts.index',compact('posts'));
     }
 
     /**

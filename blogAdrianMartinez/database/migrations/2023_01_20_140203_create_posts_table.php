@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id('');
+            $table->id();
             $table->string('title');
-            $table->string('content');
-            $table->boolean('visible')->default(1);
+            $table->text('content');
+            $table->boolean('visibility')->default(true);
             $table->timestamps();
         });
     }

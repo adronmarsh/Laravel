@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('companyName');
+            $table->string('sale');
+            $table->string('company');
             $table->double('price', 8, 2);
-            $table->double('discount');
-            $table->date('deadline');
+            $table->double('discount', 4, 2);
+            $table->date('expires');
             $table->timestamps();
         });
     }
