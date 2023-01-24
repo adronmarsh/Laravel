@@ -1,4 +1,4 @@
-# Este es el proyecto para la utilización de Laravel.
+# Este es el repositorio para la utilización de Laravel.
 ## Solucionar errores github
 #### crear archivo .env
 
