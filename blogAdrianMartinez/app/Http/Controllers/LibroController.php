@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class librosController extends Controller
+class LibroController extends Controller
 {
     public function listarLibros()
     {

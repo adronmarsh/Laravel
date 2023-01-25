@@ -1,12 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Post;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
-class PostController extends Controller
+
+
+class SaleController extends Controller
 {
+    public function __invoke(){
+        //
+     }
     /**
      * Display a listing of the resource.
      *
@@ -14,10 +19,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        Paginator::useBootstrap();
-        $posts = Post::paginate(4);
-        return view('posts.index',compact('posts'));
+        $sales = Sale::all();
+        return view('sales.index', compact('sales'));
     }
 
     /**
@@ -27,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
     }
 
     /**
@@ -49,11 +52,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        if ($id != null) {
-            return view('posts.show', compact('id'));
-        } else {
-            return redirect(route('inicio'));
-        }
+        //
     }
 
     /**
@@ -64,11 +63,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        if ($id != null) {
-            return view('posts.edit', compact('id'));
-        } else {
-            return redirect(route('inicio'));
-        }
+        //
     }
 
     /**
@@ -92,5 +87,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function empresa($nombre){
+        $data = Sale::where('company',$nombre)->get();
+
+        return view('sales.empresa', compact('data'));
     }
 }

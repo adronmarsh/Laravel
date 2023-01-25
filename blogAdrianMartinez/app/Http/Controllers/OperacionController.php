@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class operacionesController extends Controller
+class OperacionController extends Controller
 {
     public function listar10Primos($n)
     {

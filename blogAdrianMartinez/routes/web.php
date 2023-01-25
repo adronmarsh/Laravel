@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LibrosController;
-use App\Http\Controllers\OperacionesController;
+use App\Http\Controllers\LibroController;
+use App\Http\Controllers\OperacionController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\SalesController;
+use App\Http\Controllers\SaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,17 +22,13 @@ Route::get('/', function () {
 })->name('inicio');
 
 Route::resource('posts', PostController::class)->parameters(['posts' => 'post'])
-    ->names([
-        'index' => 'posts.lista',
-        'create' => 'posts.crear',
-        'show' => 'posts.mostrar',
-        'edit' => 'posts.editar'
-    ])->whereNumber('post');
+    ->whereNumber('post');
 
-Route::get('libros', [LibrosController::class, 'listarLibros']);
+Route::get('libros', [LibroController::class, 'listarLibros']);
 
-Route::get('listar10primos/{n}', [OperacionesController::class, 'listar10Primos']);
+Route::get('listar10primos/{n}', [OperacionController::class, 'listar10Primos']);
 
-Route::get('factorial/{numero}', [OperacionesController::class, 'factorial']);
+Route::get('factorial/{numero}', [OperacionController::class, 'factorial']);
 
-Route::get('sales', SalesController::class);
+Route::get('sales/empresa/{nombre}',[SaleController::class,'empresa']);
+Route::resource('sales', SaleController::class);
