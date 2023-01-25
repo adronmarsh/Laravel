@@ -90,8 +90,8 @@ class SaleController extends Controller
     }
 
     public function empresa($nombre){
-        $data = Sale::where('company',$nombre)->get();
+        $empresa = Sale::where('company',$nombre)->get();
 
-        return view('sales.empresa', compact('data'));
+        return view('sales.empresa', compact('empresa'));
     }
 }
