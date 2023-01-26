@@ -43,3 +43,8 @@ footer {
     grid-row: 3 / 4;
     grid-column: 1 / 3;
 }
+
+#logoAgora{
+    width: 2rem;
+    height: 2rem;
+}
