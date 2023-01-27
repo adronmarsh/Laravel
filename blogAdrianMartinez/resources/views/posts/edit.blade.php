@@ -3,5 +3,5 @@
 @section('title', 'Edit Post')
 
 @section('content')
-    <p>Edición del post: {{ $id }}</p>
+    <p>Edición del post: {{ $post->id }}</p>
 @endsection

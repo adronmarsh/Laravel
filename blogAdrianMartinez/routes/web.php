@@ -21,7 +21,8 @@ Route::get('/', function () {
     return view('inicio');
 })->name('inicio');
 
-Route::resource('posts', PostController::class)->parameters(['posts' => 'post'])
+Route::resource('posts', PostController::class)
+    ->parameters(['posts' => 'post'])
     ->whereNumber('post');
 
 Route::get('libros', [LibroController::class, 'listarLibros']);
@@ -30,5 +31,5 @@ Route::get('listar10primos/{n}', [OperacionController::class, 'listar10Primos'])
 
 Route::get('factorial/{numero}', [OperacionController::class, 'factorial']);
 
-Route::get('sales/empresa/{nombre}',[SaleController::class,'empresa']);
 Route::resource('sales', SaleController::class);
+Route::get('sales/empresa/{nombre}', [SaleController::class, 'empresa']);

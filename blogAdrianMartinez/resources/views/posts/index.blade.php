@@ -6,7 +6,7 @@
     <h1>Listado de posts</h1>
 
     @forelse($posts as $post)
-        <h4>- {{ $post->title }}</h4>
+        <a href="posts/{{$post->id}}"><h4>- {{ $post->title }}</h4></a>
     @empty
         No hay posts que mostrar.
     @endforelse
