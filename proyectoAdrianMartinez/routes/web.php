@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\footersController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,17 +17,57 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('inicio');
-})->name('inicio');
+    return view('index');
+})->name('index');
+Route::get('inicio', function () {
+    return view('index');
+});
 
-Route::get('miembros', function () {
-    return view('miembros');
-})->name('miembros');
+Route::resource('miembros', MemberController::class);
 
-Route::get('eventos', function () {
-    return view('eventos');
-})->name('eventos');
+Route::resource('eventos', EventController::class);
 
 Route::get('contacto', function () {
     return view('contacto');
 })->name('contacto');
+
+Route::get('donde-estamos', function () {
+    return view('dondeEstamos');
+});
+
+Route::get('añadir-evento', function () {
+    return view('añadirEvento');
+});
+
+Route::resource('mensajes', MessageController::class);
+
+Route::get('registro', function () {
+    return view('registro');
+});
+
+Route::get('login', function () {
+    return view('login');
+});
+
+Route::get('cuenta', function () {
+    return view('cuenta');
+});
+// Footer
+
+Route::get('footer/contact', function () {
+    return view('footer.contact');
+});
+
+Route::get('footer/cookiePolicy', function () {
+    return view('footer.cookiePolicy');
+});
+
+Route::get('footer/cookieSettings', function () {
+    return view('footer.cookieSettings');
+});
+Route::get('footer/privacyPolicy', function () {
+    return view('footer.privacyPolicy');
+});
+Route::get('footer/termsOfUse', function () {
+    return view('footer.termsOfUse');
+});
