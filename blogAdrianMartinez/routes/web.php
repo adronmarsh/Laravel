@@ -5,6 +5,7 @@ use App\Http\Controllers\LibroController;
 use App\Http\Controllers\OperacionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\WriterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,6 @@ Route::get('factorial/{numero}', [OperacionController::class, 'factorial']);
 
 Route::resource('sales', SaleController::class);
 Route::get('sales/empresa/{nombre}', [SaleController::class, 'empresa']);
+
+Route::resource('writers', WriterController::class);
+Route::get('witers/{nombre}', [WriterController::class, 'show']);

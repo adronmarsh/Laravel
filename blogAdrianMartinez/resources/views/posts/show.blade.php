@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+        {{$post->writer->nick}} <br>
         Id: {{ $post->id }} <br>
         @if ($post->visibility == 0)
             Oculto

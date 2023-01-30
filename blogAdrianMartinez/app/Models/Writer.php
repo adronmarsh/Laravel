@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Writer;
+use App\Models\Post;
 
-class Post extends Model
+class Writer extends Model
 {
     use HasFactory;
-
-    public function writer()
+    public function posts()
     {
-        return $this->belongsTo(Writer::class);
+        return $this->hasMany(Post::class);
     }
 }

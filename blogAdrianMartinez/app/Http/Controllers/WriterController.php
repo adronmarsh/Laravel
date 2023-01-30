@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Writer;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
 
-
-class PostController extends Controller
+class WriterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        Paginator::useBootstrap();
-        $posts = Post::paginate(4);
-        return view('posts.index', compact('posts'));
+        $writers = Writer::all();
+        return view('writers.index', compact('writers'));
     }
 
     /**
@@ -29,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
     }
 
     /**
@@ -46,37 +42,33 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Writer  $writer
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Writer $writer)
     {
-        if ($post->visibility == 0){
-            return redirect('/posts');
-        }else{
-            return view('posts.show', compact('post'));
-        }
+        return view('writers.show', compact('writer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Writer  $writer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Writer $writer)
     {
-        return view('posts.edit', compact('post'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Writer  $writer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Writer $writer)
     {
         //
     }
@@ -84,12 +76,11 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Writer  $writer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Writer $writer)
     {
-        $post->delete();
-        return redirect()->route('posts.index');
+        //
     }
 }
