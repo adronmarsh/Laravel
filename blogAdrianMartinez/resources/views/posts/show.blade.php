@@ -1,20 +1,20 @@
 @extends('layout')
 
-@section('title')
-        Post {{ $post->id }}
+@section('title', )
+    {{ $post->slug }}
 @endsection
 
 @section('content')
         {{$post->writer->nick}} <br>
-        Id: {{ $post->id }} <br>
+        Id: {{ $post->slug }} <br>
         @if ($post->visibility == 0)
             Oculto
         @else
             Visible
         @endif
         <br>
-        <a href="{{ $post->id }}/edit">Editar post</a> <br>
-        <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST">
+        <a href="{{ $post->slug }}/edit">Editar post</a> <br>
+        <form action="{{ route('posts.destroy', ['post' => $post->slug]) }}" method="POST">
             @csrf
             @method('delete')
             <input type="submit" value="Eliminar Post">

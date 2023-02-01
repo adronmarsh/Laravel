@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Writer;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Str;
 
 
 class PostController extends Controller
@@ -40,7 +42,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post();
+        $post->title = $request->get('title');
+        $post->slug = Str::slug($post->title);
+        $post->content = $request->get('content');
+        $post->visibility = $request->has('visibility') ? 1 : 0;
+        $post->writer()->associate(Writer::findOrFail($request->get('autor')));
+        $post->save();
+
+        return view('posts.guardado', compact('post'));
     }
 
     /**
@@ -51,9 +61,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if ($post->visibility == 0){
+        if ($post->visibility == 0) {
             return redirect('/posts');
-        }else{
+        } else {
             return view('posts.show', compact('post'));
         }
     }
@@ -78,7 +88,14 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->title = $request->get('title');
+        $post->slug = Str::slug($post->title);
+        $post->content = $request->get('content');
+        $post->visibility = $request->has('visibility') ? 1 : 0;
+        $post->writer()->associate(Writer::findOrFail($request->get('autor')));
+        $post->save();
+
+        return view('posts.modificado', compact('post'));
     }
 
     /**
@@ -92,4 +109,5 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('posts.index');
     }
+
 }

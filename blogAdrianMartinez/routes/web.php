@@ -6,6 +6,10 @@ use App\Http\Controllers\OperacionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\WriterController;
+// use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +26,11 @@ Route::get('/', function () {
     return view('inicio');
 })->name('inicio');
 
-Route::resource('posts', PostController::class)
-    ->parameters(['posts' => 'post'])
-    ->whereNumber('post');
+Route::resource('/posts', PostController::class)
+    ->parameters(['post' => 'slug'])
+    ->missing(function(Request $request) {
+        return Redirect::route('posts.index');
+    });
 
 Route::get('libros', [LibroController::class, 'listarLibros']);
 
