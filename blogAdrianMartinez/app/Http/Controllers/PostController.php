@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Writer;
+use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
@@ -31,7 +32,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $autores = Writer::all();
+        return view('posts.create', compact('autores'));
     }
 
     /**
@@ -40,7 +42,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
         $post = new Post();
         $post->title = $request->get('title');
@@ -76,7 +78,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $autores = Writer::all();
+        return view('posts.edit', compact('post','autores'));
     }
 
     /**
@@ -86,7 +89,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(BookRequest $request, Post $post)
     {
         $post->title = $request->get('title');
         $post->slug = Str::slug($post->title);

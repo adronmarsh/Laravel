@@ -19,10 +19,18 @@
         <label for="autor">Autor:</label>
         <select class="form-control" name="autor" id="autor">
             @foreach ($autores as $autor)
-                <option value="{{ $autor->id }}">{{ $autor->apodo }}</option>
+                <option value="{{ $autor->id }}">{{ $autor->nick }}</option>
             @endforeach
         </select>
         <br><br>
+        @if ($errors->any())
+            Hay errores en el formulario: <br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
         <input type="submit" value="Guardar">
 
     </form>
