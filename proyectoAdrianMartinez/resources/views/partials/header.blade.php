@@ -10,7 +10,7 @@
 
 <nav class="navbar navbar-expand-md bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img id="logoAgora" src="/media/logo.jpeg" alt="Logo de Ágora eSports"></a>
+        <a class="navbar-brand" href="#"><img id="logoAgora" src="/media/logo.png" alt="Logo de Ágora eSports"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#desplegable"
             aria-controls="desplegable" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

@@ -32,7 +32,13 @@ class LoginController extends Controller
 
     public function loginForm()
     {
-        return view('auth.login');
+        if (Auth::viaRemember())
+            return 'Bienvenido de nuevo';
+        else
+            if(Auth::check())
+                return redirect()->route('users.account');
+        else
+            return view('auth.login');
     }
 
     public function login(Request $request)
@@ -43,10 +49,10 @@ class LoginController extends Controller
         {
             $request->session()->regenerateToken();
             return redirect()->route('users.account');
-        } else {
+        } else
             $error = 'Error al acceder a la aplicación';
             return view ('auth.login', compact('error'));
-        }
+
     }
 
     public function logout(Request $request){
