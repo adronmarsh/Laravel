@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Http\Request;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,14 +45,6 @@ Route::get('añadir-evento', function () {
 
 Route::resource('mensajes', MessageController::class);
 
-Route::get('registro', function () {
-    return view('registro');
-});
-
-Route::get('login', function () {
-    return view('login');
-});
-
 Route::get('cuenta', function () {
     return view('cuenta');
 });
@@ -71,3 +67,13 @@ Route::get('footer/privacyPolicy', function () {
 Route::get('footer/termsOfUse', function () {
     return view('footer.termsOfUse');
 });
+
+Route::get('registro', [LoginController::class, 'registerForm']);
+Route::post('registro', [Logincontroller::class, 'register'])->name('registro');
+Route::get('login', [LoginController::class, 'loginForm']);
+Route::post('login', [LoginController::class, 'login'])->name('login');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('cuenta', function () {
+    return view('auth.account');
+})->name('users.account')
+    ->middleware('auth');

@@ -19,7 +19,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->date('birthday')->default(null);
+            $table->enum('rol', ['member', 'admin'])->default('member');
+            $table->text('twitter')->nullable();
+            $table->text('instagram')->nullable();
+            $table->text('twitch')->nullable();
+            $table->rememberToken()->default(false);
             $table->timestamps();
         });
     }

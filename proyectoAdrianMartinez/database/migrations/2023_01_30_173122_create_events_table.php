@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 15);
+            $table->text('description');
+            $table->text('location');
+            $table->date('date');
+            $table->time('hour');
+            $table->text('tags');
+            $table->boolean('visible')->default(false);
             $table->timestamps();
         });
     }
