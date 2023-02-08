@@ -54,4 +54,3 @@ Route::get('cuenta', function () {
     return view('auth.account');
 })->name('users.account')
     ->middleware('auth');
-///
