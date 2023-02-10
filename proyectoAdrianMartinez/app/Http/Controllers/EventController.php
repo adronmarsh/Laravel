@@ -82,4 +82,10 @@ class EventController extends Controller
     {
         //
     }
+
+    public function getEventsByTag($tag)
+    {
+        $events = Event::findOrFail($tag->get());
+        return view('',compact('envents'));
+    }
 }

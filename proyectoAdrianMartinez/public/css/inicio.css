@@ -1,0 +1,13 @@
+.inicio{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+#logoInicio {
+    width: 25rem;
+    height: 25rem;
+}

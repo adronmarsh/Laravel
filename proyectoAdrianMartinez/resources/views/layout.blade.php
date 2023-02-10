@@ -28,11 +28,9 @@
 <body>
 
     <div class="container">
-        <header>
-            @include('partials.header')
-        </header>
-
-        {{-- @include('partials.sidebar') --}}
+    <header>
+        @include('partials.header')
+    </header>
 
         <main>
             @yield('content')
