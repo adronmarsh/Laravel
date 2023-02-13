@@ -3,6 +3,9 @@
 @section('title', 'Miembros')
 
 @section('content')
+@foreach ($usuarios as $usuario)
+    {{$usuario->name}}
+@endforeach
     <div class="miembros">
         <h2>Miembros</h2>
         <div class="profile">

@@ -27,7 +27,7 @@ Route::get('inicio', function () {
     return view('index');
 });
 
-Route::resource('miembros', MemberController::class);
+Route::resource('usuarios', UserController::class);
 
 Route::resource('eventos', EventController::class);
 
