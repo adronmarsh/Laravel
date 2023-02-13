@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\MemberController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ Route::get('inicio', function () {
     return view('index');
 });
 
-Route::resource('usuarios', UserController::class);
+Route::resource('miembros', UserController::class);
 
 Route::resource('eventos', EventController::class);
 
