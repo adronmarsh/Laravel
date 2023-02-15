@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        $avatarName = $request->file('avatar')->storeAs('public/avatars/' . Auth::user()->id, 'avatar' . Auth::user()->id . '.jpeg');
+        $avatarName = $request->file('avatar')->storeAs('public/avatars', 'avatar' . Auth::user()->id . '.jpeg');
         $user->avatar = $avatarName;
 
         return redirect()->route('users.account');

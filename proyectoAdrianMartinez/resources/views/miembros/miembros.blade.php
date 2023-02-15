@@ -9,7 +9,9 @@
             @foreach ($usuarios as $usuario)
                 <div class="profile">
                     <a href="">
-                        <img src="/storage/avatars/{{ $usuario->id }}/avatar{{ $usuario->id }}.jpeg" alt="Foto de {{ $usuario->name }}">
+                        {{Auth::user()->avatar}}
+                        {{-- {{ $usuario->id }} --}}
+                        <img src="/avatars/avatar{{ $usuario->id }}.jpeg" alt="Foto de {{ $usuario->name }}">
                         {{ $usuario->name }}
                     </a>
                 </div>
