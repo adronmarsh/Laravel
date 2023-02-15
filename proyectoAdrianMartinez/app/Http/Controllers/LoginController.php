@@ -29,6 +29,9 @@ class LoginController extends Controller
 
         Auth::login($user);
 
+        $avatarName = $request->file('avatar')->storeAs('public/avatars/' . Auth::user()->id, 'avatar' . Auth::user()->id . '.jpeg');
+        $user->avatar = $avatarName;
+
         return redirect()->route('users.account');
     }
 
@@ -37,8 +40,8 @@ class LoginController extends Controller
         if (Auth::viaRemember())
             return 'Bienvenido de nuevo';
         else
-            if(Auth::check())
-                return redirect()->route('users.account');
+            if (Auth::check())
+            return redirect()->route('users.account');
         else
             return view('auth.login');
     }
@@ -47,17 +50,16 @@ class LoginController extends Controller
     {
         $credenciales = $request->only('name', 'password');
 
-        if (Auth::guard('web')->attempt($credenciales))
-        {
+        if (Auth::guard('web')->attempt($credenciales)) {
             $request->session()->regenerateToken();
             return redirect()->route('users.account');
         } else
             $error = 'Error al acceder a la aplicación';
-            return view ('auth.login', compact('error'));
-
+        return view('auth.login', compact('error'));
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

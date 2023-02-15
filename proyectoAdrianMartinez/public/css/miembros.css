@@ -1,4 +1,4 @@
-.miembros{
+.miembros-container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -7,22 +7,29 @@
     text-align: center;
 }
 
-.miembros img{
+.miembros-container img {
     width: 5rem;
     height: 5rem;
     border: 3px solid black;
     border-radius: 40px;
 }
 
-.profile{
+.users {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
-.miembro{
-    margin: 2rem;
+.profile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 5rem;
+    height: 5rem;
+    margin: 1rem;
 }
-.miembro a{
+
+.profile a {
     color: #333;
     text-decoration: none;
 }

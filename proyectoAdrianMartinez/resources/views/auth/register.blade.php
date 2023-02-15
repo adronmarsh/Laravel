@@ -9,8 +9,8 @@
         <label for="name">Nombre:</label> <br>
         <input type="text" name="name" id="name"> <br>
 
-        <label for="avatar">Foto de perfil:</label>
-        <input type="file" name="avatar" id="avatar">
+        <label for="avatar">Foto de perfil:</label> <br>
+        <input type="file" name="avatar" id="avatar"> <br>
 
         <label for="email">Email:</label> <br>
         <input type="email" name="email" id="email"> <br>
