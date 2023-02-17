@@ -1,0 +1,17 @@
+.container-cuenta {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.info-cuenta {
+    width: 70%;
+    text-align: left;
+}
+
+.foto-cuenta {
+    width: 20rem;
+    height: 20rem;
+}

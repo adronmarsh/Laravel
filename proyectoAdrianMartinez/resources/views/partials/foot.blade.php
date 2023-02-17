@@ -4,5 +4,5 @@
     <a href="/footer/cookieSettings">Configuración de cookies</a>
     <a href="/footer/privacyPolicy">Política de privacidad</a>
     <a href="/footer/termsOfUse">Términos y condiciones de uso</a>
-    <a href="/footer/contact">Contacto</a>
+    <a href="/contacto">Contacto</a>
 </div>

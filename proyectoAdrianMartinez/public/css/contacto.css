@@ -1,0 +1,12 @@
+.container-contacto{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.container-contacto h2{
+    text-align: center;
+}

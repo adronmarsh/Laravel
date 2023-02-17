@@ -83,4 +83,11 @@ class UserController extends Controller
     {
         //
     }
+
+    public function cuenta()
+    {
+        $user_id = auth()->user()->id;
+        $usuario = User::findOrFail($user_id);
+        return view('auth/account', compact('usuario'));
+    }
 }

@@ -29,10 +29,15 @@ Route::get('inicio', function () {
 
 Route::resource('miembros', UserController::class);
 
+Route::get('cuenta', [UserController::class, 'cuenta'])
+->name('users.account')
+->middleware('auth');
+
+
 Route::resource('eventos', EventController::class);
 
 Route::get('contacto', function () {
-    return view('contacto');
+    return view('contacto/contacto');
 })->name('contacto');
 
 Route::get('donde-estamos', function () {
@@ -41,14 +46,13 @@ Route::get('donde-estamos', function () {
 
 Route::get('añadir-evento', function () {
     return view('añadirEvento');
-});
+})
+// ->middleware('admin')
+;
 
-Route::resource('mensajes', MessageController::class);
-
-Route::get('cuenta', function () {
-    return view('cuenta');
-});
-// Footer
+Route::resource('mensajes', MessageController::class)
+// ->middleware('admin')
+;
 
 Route::get('footer/contact', function () {
     return view('footer.contact');
@@ -73,7 +77,7 @@ Route::post('registro', [Logincontroller::class, 'register'])->name('registro');
 Route::get('login', [LoginController::class, 'loginForm']);
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('cuenta', function () {
-    return view('auth.account');
-})->name('users.account')
-    ->middleware('auth');
+// Route::get('cuenta', function () {
+//     return view('auth.account');
+// })->name('users.account')
+//     ->middleware('auth');

@@ -23,13 +23,14 @@
                     <a class="nav-link" href="/donde-estamos">Dónde estamos</a>
                 </li>
                 <!--ADMIN-->
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="/añadir-evento">Evento</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/mensaje">Mensajes</a>
-                </li> --}}
-
+                @can('admin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="/añadir-evento">Evento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mensaje">Mensajes</a>
+                    </li>
+                @endcan
 
                 @auth
                     <!--CUENTA-->
