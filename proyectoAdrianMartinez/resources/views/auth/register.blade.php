@@ -32,8 +32,8 @@
 
         <label for="password_confirmation">Repite Contraseña:</label> <br>
         <input type="password" name="password_confirmation" id="password_confirmation"> <br>
-
-        <input type="submit" name="enviar" value="Enviar">
+        <br>
+        <input type="submit" name="enviar" class="button" value="Enviar">
     </form>
 
     @if ($errors->any())

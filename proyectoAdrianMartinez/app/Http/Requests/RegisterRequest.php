@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules;
+use App\Rules\PngFormat;
 
 
 class RegisterRequest extends FormRequest
@@ -27,6 +28,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:20', 'unique:users'],
+            'avatar' => ['required', 'file', new PngFormat],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'birthday' => ['required','date'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],

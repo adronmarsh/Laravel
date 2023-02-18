@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Error')
+@section('title', 'Error 419')
 
 @section('content')
     <h2>Error 419: La página que estás buscando ha expirado</h2>

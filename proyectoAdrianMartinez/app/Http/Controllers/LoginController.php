@@ -17,6 +17,7 @@ class LoginController extends Controller
 
     public function register(RegisterRequest $request)
     {
+        // Crea un objeto usuario para almacenar todos los parámetros
         $user = new User();
         $user->name = $request->get('name');
         $user->email = $request->get('email');
@@ -27,9 +28,11 @@ class LoginController extends Controller
         $user->twitch = $request->get('twitch');
         $user->save();
 
+        // Inicia sesión
         Auth::login($user);
 
-        $avatarName = $request->file('avatar')->storeAs('public/avatars', 'avatar' . Auth::user()->id . '.jpeg');
+        // Guarda la foto en la carpeta avatars dentro de public para no ocupar espacio en el servidor
+        $avatarName = $request->file('avatar')->storeAs('public/avatars', 'avatar' . Auth::user()->id . '.png');
         $user->avatar = $avatarName;
 
         return redirect()->route('users.account');

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 15);
+            $table->string('name', 50);
             $table->string('subject', 100);
             $table->text('text');
             $table->boolean('readed')->default(false);

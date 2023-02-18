@@ -27,11 +27,12 @@ Route::get('inicio', function () {
     return view('index');
 });
 
-Route::resource('miembros', UserController::class);
+Route::resource('/miembros', UserController::class);
 
 Route::get('cuenta', [UserController::class, 'cuenta'])
 ->name('users.account')
 ->middleware('auth');
+Route::get('cuenta/{usuario}', [UserController::class, 'editarCuenta'])->name('account.edit');
 
 
 Route::resource('eventos', EventController::class);
@@ -50,9 +51,10 @@ Route::get('añadir-evento', function () {
 // ->middleware('admin')
 ;
 
-Route::resource('mensajes', MessageController::class)
-// ->middleware('admin')
-;
+Route::resource('mensajes', MessageController::class);
+Route::post('/procesar-formulario', [MessageController::class, 'procesarFormulario'])->name('message.procesarFormulario');
+Route::get('/enviado', [MessageController::class, 'enviado'])->name('enviado');
+
 
 Route::get('footer/contact', function () {
     return view('footer.contact');

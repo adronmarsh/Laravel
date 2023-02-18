@@ -20,17 +20,18 @@
                     <a class="nav-link" href="/contacto">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/donde-estamos">Dónde estamos</a>
+                    <a class="nav-link" href="/donde-estamos">Dónde Estamos</a>
                 </li>
+
                 <!--ADMIN-->
-                @can('admin')
+                @if (Auth::check() && Auth::user()->rol == 'admin')
                     <li class="nav-item">
-                        <a class="nav-link" href="/añadir-evento">Evento</a>
+                        <a class="nav-link" href="/añadir-evento">Añadir Evento</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/mensaje">Mensajes</a>
+                        <a class="nav-link" href="/mensajes">Mensajes</a>
                     </li>
-                @endcan
+                @endif
 
                 @auth
                     <!--CUENTA-->

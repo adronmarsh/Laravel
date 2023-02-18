@@ -14,7 +14,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return view('mensajes.index');
+        $mensajes = Message::all();
+        return view('mensajes.mensaje', compact('mensajes'));
     }
 
     /**
@@ -46,7 +47,7 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+
     }
 
     /**
@@ -81,5 +82,20 @@ class MessageController extends Controller
     public function destroy(Message $message)
     {
         //
+    }
+
+    public function procesarFormulario(Request $request)
+    {
+        $message = new Message;
+        $message->name = $request->input('name');
+        $message->subject = $request->input('subject');
+        $message->text = $request->input('message');
+        $message->save();
+        return redirect()->route('enviado');
+    }
+
+    public function enviado()
+    {
+        return view('mensajes.enviado');
     }
 }
