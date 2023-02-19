@@ -9,9 +9,9 @@
         <input type="text" name="name" id="name"> <br>
 
         <label for="password">Contraseña:</label> <br>
-        <input type="password" name="password" id="password"> <br>
+        <input type="password" name="password" id="password"> <br><br>
 
-        <input type="submit" name="enviar" value="Enviar">
+        <input type="submit" name="enviar" class="button" value="Enviar">
     </form>
 
     @isset($error)

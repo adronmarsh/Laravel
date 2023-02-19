@@ -54,10 +54,10 @@
                 @endauth
 
             </ul>
-            <form class="d-flex" role="search">
+            {{-- <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Buscar</button>
-            </form>
+            </form> --}}
         </div>
     </div>
 </nav>

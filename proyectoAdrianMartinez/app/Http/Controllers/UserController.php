@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\AccountRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 
 class UserController extends Controller
@@ -64,11 +63,15 @@ class UserController extends Controller
     public function edit($miembro)
     {
         $user = Auth::user();
-        if ($miembro != $user->id) {
-            return abort(403, 'Acceso no autorizado');
+        if ($user != null) {
+            if ($miembro != $user->id) {
+                return abort(403, 'Acceso no autorizado');
+            }
+            $usuario = User::findOrFail($miembro);
+            return view('auth.edit', compact('usuario'));
+        } else {
+            return view('errors.419');
         }
-        $usuario = User::findOrFail($miembro);
-        return view('auth.edit', compact('usuario'));
     }
 
     /**
@@ -77,11 +80,10 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
+     *
      */
-    public function update(RegisterRequest $request, User $miembro)
+    public function update(AccountRequest $request, User $miembro)
     {
-        $miembro->name = $request->get('name');
-        $miembro->email = $request->get('email');
         $miembro->birthday = $request->get('birthday');
         $miembro->twitter = $request->get('twitter');
         $miembro->instagram = $request->get('instagram');

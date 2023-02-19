@@ -14,8 +14,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $mensajes = Message::all();
-        return view('mensajes.mensaje', compact('mensajes'));
+        $mensajes = Message::orderBy('created_at', 'desc')->get();
+        return view('mensajes.index', compact('mensajes'));
     }
 
     /**
@@ -45,9 +45,12 @@ class MessageController extends Controller
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show($message)
     {
-
+        $mensaje = Message::findOrFail($message);
+        $mensaje->readed = 1;
+        $mensaje->save();
+        return view('mensajes.show', compact('mensaje'));
     }
 
     /**
@@ -79,10 +82,13 @@ class MessageController extends Controller
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy($id)
     {
-        //
+        $message = Message::findOrFail($id);
+        $message->delete();
+        return redirect()->route('mensajes.index');
     }
+
 
     public function procesarFormulario(Request $request)
     {

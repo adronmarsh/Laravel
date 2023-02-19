@@ -1,0 +1,13 @@
+.container-mapa{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+.mapa{
+    border: 2px solid black;
+}
