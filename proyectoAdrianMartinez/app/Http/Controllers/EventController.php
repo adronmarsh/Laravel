@@ -18,14 +18,32 @@ class EventController extends Controller
         return view('eventos.index', compact('eventos'));
     }
 
+
+    public function crear()
+    {
+        return view('eventos.create');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $event = new Event();
+        $event->name = $request->get('name');
+        $event->description = $request->get('description');
+        $event->location = $request->get('location');
+        $event->hour = $request->get('hour');
+        $event->date = $request->get('date');
+        $event->tags = $request->get('tags');
+        $event->visible = $request->get('visible');
+
+        $event->save();
+
+        return view('eventos.index');
     }
 
     /**
@@ -58,9 +76,10 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit($event)
     {
-        //
+        $evento = Event::findOrFail($event);
+        return view('eventos.edit', compact('evento'));
     }
 
     /**
@@ -70,9 +89,18 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, Event $evento)
     {
-        //
+        $evento->name = $request->get('name');
+        $evento->description = $request->get('description');
+        $evento->location = $request->get('location');
+        $evento->date = $request->get('date');
+        $evento->hour = $request->get('hour');
+        $evento->tags = $request->get('tags');
+        $evento->visible = $request->get('visible');
+        $evento->save();
+
+        return view('eventos.show', compact('evento'));
     }
 
     /**
@@ -81,14 +109,18 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(Event $evento)
     {
-        //
+        $evento->delete();
+        return redirect()->route('eventos.index');
     }
 
     public function getEventsByTag($tag)
     {
         $events = Event::findOrFail($tag->get());
-        return view('',compact('envents'));
+        return view('', compact('envents'));
     }
+
+
+
 }

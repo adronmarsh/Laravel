@@ -26,7 +26,7 @@
                 <!--ADMIN-->
                 @if (Auth::check() && Auth::user()->rol == 'admin')
                     <li class="nav-item">
-                        <a class="nav-link" href="/añadir-evento">Añadir Evento</a>
+                        <a class="nav-link" href="/eventos/crear">Añadir Evento</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/mensajes">Mensajes</a>

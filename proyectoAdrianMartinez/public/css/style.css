@@ -56,3 +56,15 @@ footer {
     width: 2rem;
     height: 2rem;
 }
+
+.button{
+    background-color: dodgerblue;
+    color: aliceblue;
+    border-radius: 20px;
+    width: 5rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    border: none;
+    text-align: center;
+}

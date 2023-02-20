@@ -115,7 +115,7 @@ class UserController extends Controller
     {
         $user_id = auth()->user()->id;
         $usuario = User::findOrFail($user_id);
-        return view('auth/account', compact('usuario'));
+        return view('auth.account', compact('usuario'));
     }
 
     public function editarCuenta($usuario)

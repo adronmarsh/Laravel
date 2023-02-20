@@ -36,6 +36,7 @@ Route::get('cuenta/{usuario}', [UserController::class, 'editarCuenta'])->name('a
 
 
 Route::resource('eventos', EventController::class);
+Route::get('eventos/crear', [EventController::class, 'crear'])->name('eventos.crear');
 
 Route::get('contacto', function () {
     return view('contacto/contacto');
@@ -44,12 +45,6 @@ Route::get('contacto', function () {
 Route::get('donde-estamos', function () {
     return view('dondeEstamos');
 });
-
-Route::get('añadir-evento', function () {
-    return view('añadirEvento');
-})
-// ->middleware('admin')
-;
 
 Route::resource('mensajes', MessageController::class);
 Route::post('/procesar-formulario', [MessageController::class, 'procesarFormulario'])->name('message.procesarFormulario');
@@ -79,7 +74,3 @@ Route::post('registro', [Logincontroller::class, 'register'])->name('registro');
 Route::get('login', [LoginController::class, 'loginForm']);
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-// Route::get('cuenta', function () {
-//     return view('auth.account');
-// })->name('users.account')
-//     ->middleware('auth');
