@@ -84,11 +84,18 @@ class UserController extends Controller
      */
     public function update(AccountRequest $request, User $miembro)
     {
+
         $miembro->birthday = $request->get('birthday');
         $miembro->twitter = $request->get('twitter');
         $miembro->instagram = $request->get('instagram');
         $miembro->twitch = $request->get('twitch');
         $miembro->save();
+
+        if ($request->file('avatar') !== null) {
+            $avatarName = $request->file('avatar')->storeAs('public/avatars', 'avatar' . Auth::user()->id . '.png');
+            $miembro->avatar = $avatarName;
+        }
+
         $usuario = $miembro;
         return view('auth.account', compact('usuario'));
     }

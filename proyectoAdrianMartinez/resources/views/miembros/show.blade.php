@@ -14,8 +14,12 @@
                 <p>Twitch: {{ $usuario->twitch }}</p> <br>
                 <p>Cuenta creada en: {{ $usuario->created_at }}</p> <br>
             </div>
-            <img class="foto-cuenta" src="{{ asset('storage/avatars/avatar' . $usuario->id . '.png') }}"
-                alt="Foto de {{ $usuario->name }}">
+            @if (File::exists(public_path('/storage/avatars/avatar' . $usuario->id . '.png')))
+                <img class="foto-cuenta" src="{{ asset('storage/avatars/avatar' . $usuario->id . '.png') }}"
+                    alt="Foto de {{ $usuario->name }}">
+            @else
+                <img class="foto-cuenta" src="/storage/avatars/default.png" alt="foto">
+            @endif
         @else
             <p>¡Vaya! ¡No deberías estar aquí! Inicia sesión para poder acceder a la información.</p>
         @endauth

@@ -34,7 +34,7 @@ class LoginController extends Controller
         // Guarda la foto en la carpeta avatars dentro de public para no ocupar espacio en el servidor
         if ($request->file('avatar') == null) {
             // $avatarName = 'public/avatars/default.png';
-            $avatarName = 'storage/avatars/default.png';
+            $avatarName = 'public/media/default.png';
         } else {
             $avatarName = $request->file('avatar')->storeAs('public/avatars', 'avatar' . Auth::user()->id . '.png');
         }

@@ -14,6 +14,13 @@
 .foto-cuenta {
     width: 20rem;
     height: 20rem;
+    border-radius:50%;
+    border: 4px solid black;
+}
+
+.foto-cuenta-edit:hover{
+    opacity: 70%;
+    cursor: pointer;
 }
 
 .button{

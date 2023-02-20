@@ -14,7 +14,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('eventos.index');
+        $eventos = Event::all();
+        return view('eventos.index', compact('eventos'));
     }
 
     /**
@@ -44,9 +45,11 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($evento)
     {
-        //
+        $evento = Event::findOrFail($evento);
+        $evento->save();
+        return view('eventos.show', compact('evento'));
     }
 
     /**

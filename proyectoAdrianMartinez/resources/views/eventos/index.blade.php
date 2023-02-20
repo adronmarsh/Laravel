@@ -3,5 +3,25 @@
 @section('title', 'Eventos')
 
 @section('content')
-    <h2>Esta es la página de Eventos</h2>
+    <div class="container-eventos">
+        @if ($eventos->isEmpty())
+            <div>No hay eventos que mostrar</div>
+        @else
+            <h2>Eventos disponibles</h2>
+            @foreach ($eventos as $evento)
+                @if ($evento->visible == 0)
+                @else
+                    <a class="eventos-link" href="{{ route('eventos.show', $evento->id) }}">
+                        <div class="evento">
+                            <h3>{{ $evento->name }}</h3>
+                            <p>{{ $evento->location }}</p>
+                            <p>{{ $evento->date }}</p>
+                            <p>{{ $evento->hour }}</p>
+                            <a href="">Apúntame</a>
+                        </div>
+                    </a>
+                @endif
+            @endforeach
+        @endif
+    </div>
 @endsection

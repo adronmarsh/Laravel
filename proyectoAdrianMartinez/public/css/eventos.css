@@ -1,0 +1,20 @@
+.container-eventos {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.evento{
+    border: 4px solid black;
+    background-color: aliceblue;
+    margin: 2rem;
+}
+
+.eventos-link{
+    text-decoration: none;
+    color: black;
+}

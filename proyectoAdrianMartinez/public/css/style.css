@@ -5,6 +5,7 @@
 @import "cuenta.css";
 @import "mensajes.css";
 @import "mapa.css";
+@import "eventos.css";
 
 body {
     font-family: Arial, sans-serif;
