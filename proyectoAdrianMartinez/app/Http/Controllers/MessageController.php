@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\MessageRequest;
 class MessageController extends Controller
 {
     /**
@@ -90,7 +90,7 @@ class MessageController extends Controller
     }
 
 
-    public function procesarFormulario(Request $request)
+    public function procesarFormulario(MessageRequest $request)
     {
         $message = new Message;
         $message->name = $request->input('name');

@@ -87,7 +87,7 @@ class UserController extends Controller
     {
         $usuario = $miembro;
 
-        $date = DateTime::createFromFormat('Y-m-d', $request->get('date'));
+        $date = DateTime::createFromFormat('Y-m-d', $request->get('birthday'));
 
         if ($date !== false) {
             $usuario->birthday = $date->format('Y-m-d');

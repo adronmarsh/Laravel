@@ -21,7 +21,7 @@ class LoginController extends Controller
         // Crea un objeto usuario para almacenar todos los parámetros
         $user = new User();
 
-        $date = DateTime::createFromFormat('Y-m-d', $request->get('date'));
+        $date = DateTime::createFromFormat('Y-m-d', $request->get('birthday'));
 
         if ($date !== false) {
             $user->birthday = $date->format('Y-m-d');
