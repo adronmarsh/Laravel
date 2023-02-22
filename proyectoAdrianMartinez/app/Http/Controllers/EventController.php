@@ -34,8 +34,7 @@ class EventController extends Controller
                 return view('eventos.create');
             }
             return redirect('eventos');
-        }
-        else{
+        } else {
             return redirect('eventos');
         }
     }

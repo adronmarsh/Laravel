@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Http\Requests\MessageRequest;
+
 class MessageController extends Controller
 {
     /**
@@ -92,6 +93,9 @@ class MessageController extends Controller
 
     public function procesarFormulario(MessageRequest $request)
     {
+        if (!$request->isMethod('post')) {
+            return redirect()->route('index');
+        }
         $message = new Message;
         $message->name = $request->input('name');
         $message->subject = $request->input('subject');

@@ -21,16 +21,26 @@ use App\Http\Controllers\LoginController;
 // --------------------- User ---------------------
 Route::resource('/miembros', UserController::class);
 Route::get('cuenta', [UserController::class, 'cuenta'])->name('users.account')->middleware('auth');
-Route::get('cuenta/{usuario}', [UserController::class, 'editarCuenta'])->name('account.edit');
 
 // --------------------- Events ---------------------
 Route::resource('eventos', EventController::class);
 Route::put('eventos/apuntados/{evento}', [EventController::class, 'apuntados'])->name('eventos.apuntados');
+Route::get('eventos/apuntados/{evento}', function () {
+    return redirect()->route('index');
+});
 Route::put('/eventos/{evento}/visible', [EventController::class, 'visible'])->name('eventos.visible');
+Route::get('/eventos/{evento}/visible', function () {
+    return redirect()->route('index');
+});
+
+
 
 // --------------------- Message ---------------------
 Route::resource('mensajes', MessageController::class);
 Route::post('/procesar-formulario', [MessageController::class, 'procesarFormulario'])->name('message.procesarFormulario');
+Route::get('/procesar-formulario', function () {
+    return redirect()->route('index');
+})->name('procesarFormularioError');
 Route::get('/enviado', [MessageController::class, 'enviado'])->name('enviado');
 
 // --------------------- Login ---------------------
