@@ -92,8 +92,17 @@ class EventController extends Controller
      */
     public function edit($event)
     {
-        $evento = Event::findOrFail($event);
-        return view('eventos.edit', compact('evento'));
+        if (Auth::user() !== null){
+            if (Auth::user()->rol == 'admin') {
+                $evento = Event::findOrFail($event);
+                return view('eventos.edit', compact('evento'));
+            } else {
+                return redirect()->route('index');
+            }
+        }
+        else{
+            return redirect()->route('index');
+        }
     }
 
     /**

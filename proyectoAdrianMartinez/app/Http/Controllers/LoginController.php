@@ -13,6 +13,8 @@ class LoginController extends Controller
 {
     public function registerForm()
     {
+        if (Auth::check())
+        return redirect()->route('users.account');
         return view('auth.register');
     }
 
