@@ -16,7 +16,7 @@
         <input type="email" name="email" id="email"> <br>
 
         <label for="birthday">Fecha de nacimiento:</label> <br>
-        <input type="date" name="birthday" id="birthday"> <br>
+        <input type="date" name="birthday" id="birthday"  max="{{ date('Y-m-d') }}"> <br>
 
         <label for="twitter">Twitter:</label> <br>
         <input type="text" name="twitter" id="twitter"> <br>

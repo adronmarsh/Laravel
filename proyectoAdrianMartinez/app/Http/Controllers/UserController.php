@@ -6,7 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\AccountRequest;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Hash;
+use DateTime;
 
 class UserController extends Controller
 {
@@ -84,19 +85,32 @@ class UserController extends Controller
      */
     public function update(AccountRequest $request, User $miembro)
     {
+        $usuario = $miembro;
 
-        $miembro->birthday = $request->get('birthday');
-        $miembro->twitter = $request->get('twitter');
-        $miembro->instagram = $request->get('instagram');
-        $miembro->twitch = $request->get('twitch');
-        $miembro->save();
+        $date = DateTime::createFromFormat('Y-m-d', $request->get('date'));
+
+        if ($date !== false) {
+            $usuario->birthday = $date->format('Y-m-d');
+        } else {
+            return view('auth.account', compact('usuario'));
+        }
+
+        $usuario->birthday = $request->get('birthday');
+        $usuario->twitter = $request->get('twitter');
+        $usuario->instagram = $request->get('instagram');
+        $usuario->twitch = $request->get('twitch');
+
+        if ($request->get('password') !== null) {
+            $usuario->password = Hash::make($request->get('password'));
+        }
+
+        $usuario->save();
 
         if ($request->file('avatar') !== null) {
             $avatarName = $request->file('avatar')->storeAs('public/avatars', 'avatar' . Auth::user()->id . '.png');
-            $miembro->avatar = $avatarName;
+            $usuario->avatar = $avatarName;
         }
 
-        $usuario = $miembro;
         return view('auth.account', compact('usuario'));
     }
 

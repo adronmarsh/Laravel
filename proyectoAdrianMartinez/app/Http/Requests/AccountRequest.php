@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules;
 
 class AccountRequest extends FormRequest
 {
@@ -25,6 +26,7 @@ class AccountRequest extends FormRequest
     {
         return [
             'birthday' => ['required', 'date'],
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
         ];
     }
 
@@ -33,6 +35,7 @@ class AccountRequest extends FormRequest
         return [
             'birthday.required' => 'El campo de fecha de nacimiento es obligatorio',
             'birthday.date' => 'El campo de fecha de nacimiento debe contener el siguiente formato: YYYY-MM-DD',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
         ];
     }
 }

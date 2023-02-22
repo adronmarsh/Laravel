@@ -5,8 +5,6 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\LoginController;
-use Illuminate\Http\Request;
-
 
 
 /*
@@ -20,36 +18,40 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
-Route::get('inicio', function () {
-    return view('index');
-});
-
+// --------------------- User ---------------------
 Route::resource('/miembros', UserController::class);
-
-Route::get('cuenta', [UserController::class, 'cuenta'])
-->name('users.account')
-->middleware('auth');
+Route::get('cuenta', [UserController::class, 'cuenta'])->name('users.account')->middleware('auth');
 Route::get('cuenta/{usuario}', [UserController::class, 'editarCuenta'])->name('account.edit');
 
-
+// --------------------- Events ---------------------
 Route::resource('eventos', EventController::class);
-Route::get('eventos/crear', [EventController::class, 'crear'])->name('eventos.crear');
+Route::put('eventos/apuntados/{evento}', [EventController::class, 'apuntados'])->name('eventos.apuntados');
+Route::put('/eventos/{evento}/visible', [EventController::class, 'visible'])->name('eventos.visible');
 
-Route::get('contacto', function () {
-    return view('contacto/contacto');
-})->name('contacto');
-
-Route::get('donde-estamos', function () {
-    return view('dondeEstamos');
-});
-
+// --------------------- Message ---------------------
 Route::resource('mensajes', MessageController::class);
 Route::post('/procesar-formulario', [MessageController::class, 'procesarFormulario'])->name('message.procesarFormulario');
 Route::get('/enviado', [MessageController::class, 'enviado'])->name('enviado');
 
+// --------------------- Login ---------------------
+Route::get('registro', [LoginController::class, 'registerForm']);
+Route::post('registro', [Logincontroller::class, 'register'])->name('registro');
+Route::get('login', [LoginController::class, 'loginForm']);
+Route::post('login', [LoginController::class, 'login'])->name('login');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+// --------------------- Static ---------------------
+Route::get('/', function () {
+    return view('index');
+})->name('index');
+
+Route::get('inicio', function () {
+    return view('index');
+});
+
+Route::get('donde-estamos', function () {
+    return view('dondeEstamos');
+});
 
 Route::get('footer/contact', function () {
     return view('footer.contact');
@@ -62,15 +64,15 @@ Route::get('footer/cookiePolicy', function () {
 Route::get('footer/cookieSettings', function () {
     return view('footer.cookieSettings');
 });
+
 Route::get('footer/privacyPolicy', function () {
     return view('footer.privacyPolicy');
 });
+
 Route::get('footer/termsOfUse', function () {
     return view('footer.termsOfUse');
 });
 
-Route::get('registro', [LoginController::class, 'registerForm']);
-Route::post('registro', [Logincontroller::class, 'register'])->name('registro');
-Route::get('login', [LoginController::class, 'loginForm']);
-Route::post('login', [LoginController::class, 'login'])->name('login');
-Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('contacto', function () {
+    return view('contacto/contacto');
+})->name('contacto');

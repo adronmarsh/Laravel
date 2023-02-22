@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegisterRequest;
+use DateTime;
 
 class LoginController extends Controller
 {
@@ -19,6 +20,15 @@ class LoginController extends Controller
     {
         // Crea un objeto usuario para almacenar todos los parámetros
         $user = new User();
+
+        $date = DateTime::createFromFormat('Y-m-d', $request->get('date'));
+
+        if ($date !== false) {
+            $user->birthday = $date->format('Y-m-d');
+        } else {
+            return redirect()->route('users.account');
+        }
+
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->password = Hash::make($request->get('password'));
@@ -33,7 +43,6 @@ class LoginController extends Controller
 
         // Guarda la foto en la carpeta avatars dentro de public para no ocupar espacio en el servidor
         if ($request->file('avatar') == null) {
-            // $avatarName = 'public/avatars/default.png';
             $avatarName = 'public/media/default.png';
         } else {
             $avatarName = $request->file('avatar')->storeAs('public/avatars', 'avatar' . Auth::user()->id . '.png');

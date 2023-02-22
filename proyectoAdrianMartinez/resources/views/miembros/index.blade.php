@@ -15,10 +15,10 @@
                             <a href="{{ route('miembros.show', $usuario->id) }}">
                             @endauth
                             @if (File::exists(public_path('/storage/avatars/avatar' . $usuario->id . '.png')))
-                                <img src="{{ asset('storage/avatars/avatar' . $usuario->id . '.png') }}"
+                                <img class="profile-picture" src="{{ asset('storage/avatars/avatar' . $usuario->id . '.png') }}"
                                     alt="Foto de {{ $usuario->name }}">
                                 @else
-                                <img src="/storage/avatars/default.png" alt="foto">
+                                <img class="profile-picture" src="/storage/avatars/default.png" alt="foto">
                                 @endif
                                 {{ $usuario->name }}
                             @auth

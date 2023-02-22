@@ -22,7 +22,7 @@
                 <input type="text" name="hour" value="{{ $evento->hour }}">
 
                 <label for="date">Fecha:</label>
-                <input type="date" name="date" value="{{ $evento->date }}">
+                <input type="date" name="date" value="{{ $evento->date }}"  min="{{ date('Y-m-d') }}" min="{{ date('Y-m-d') }}" max="2999-12-31">
 
                 <label for="tags">Tags:</label>
                 <input type="text" name="tags" value="{{ $evento->tags }}">

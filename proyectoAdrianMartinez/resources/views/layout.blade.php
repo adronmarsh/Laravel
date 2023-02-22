@@ -22,7 +22,7 @@
     <!--Título-->
     <title> @yield('title') - Ágora eSports</title>
     <!--Icono de la página-->
-    <link rel="icon" type="image/x-icon" href="/media/logo.jpeg">
+    <link rel="icon" type="image/x-icon" href="/media/logo.png">
 </head>
 
 <body>

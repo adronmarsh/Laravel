@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
+use Illuminate\Support\Facades\Auth;
+use DateTime;
 
 class EventController extends Controller
 {
@@ -19,31 +22,22 @@ class EventController extends Controller
     }
 
 
-    public function crear()
-    {
-        return view('eventos.create');
-    }
-
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $event = new Event();
-        $event->name = $request->get('name');
-        $event->description = $request->get('description');
-        $event->location = $request->get('location');
-        $event->hour = $request->get('hour');
-        $event->date = $request->get('date');
-        $event->tags = $request->get('tags');
-        $event->visible = $request->get('visible');
-
-        $event->save();
-
-        return view('eventos.index');
+        if (Auth::user() !== null) {
+            if (Auth::user()->rol == 'admin') {
+                return view('eventos.create');
+            }
+            return redirect('eventos');
+        }
+        else{
+            return redirect('eventos');
+        }
     }
 
     /**
@@ -52,9 +46,30 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        //
+
+        if (Auth::user()->rol == 'admin') {
+            $eventos = new Event();
+            $date = DateTime::createFromFormat('Y-m-d', $request->get('date'));
+
+            if ($date !== false) {
+                $eventos->birthday = $date->format('Y-m-d');
+            } else {
+                return redirect('/eventos');
+            }
+
+            $eventos->name = $request->get('name');
+            $eventos->description = $request->get('description');
+            $eventos->location = $request->get('location');
+            $eventos->hour = $request->get('hour');
+            $eventos->date = $request->get('date');
+            $eventos->tags = $request->get('tags');
+            $eventos->visible = $request->get('visible');
+
+            $eventos->save();
+        }
+        return redirect('/eventos');
     }
 
     /**
@@ -91,6 +106,14 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $evento)
     {
+        $date = DateTime::createFromFormat('Y-m-d', $request->get('date'));
+
+        if ($date !== false) {
+            $evento->birthday = $date->format('Y-m-d');
+        } else {
+            return view('eventos.show', compact('evento'));
+        }
+
         $evento->name = $request->get('name');
         $evento->description = $request->get('description');
         $evento->location = $request->get('location');
@@ -121,6 +144,27 @@ class EventController extends Controller
         return view('', compact('envents'));
     }
 
+    public function apuntados(Event $evento)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+        $user = Auth::user();
+        $evento->miembros()->toggle($user);
 
+        return redirect()->route('eventos.index');
+    }
 
+    public function visible(Event $evento)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $evento->visible = !$evento->visible;
+
+        $evento->save();
+
+        return redirect()->route('eventos.index');
+    }
 }

@@ -19,8 +19,9 @@
     color: black;
 }
 
-.eventos-link:hover{
-    opacity: 60%;
+.evento:hover {
+    opacity: 90%;
+    box-shadow: 0px 0px 15px 1px black;
 }
 
 .botones-eventos {
@@ -41,12 +42,47 @@
     width: 50%;
     margin: auto;
     text-align: left;
+    margin-right: 13rem;
 }
 
 .editar-eventos input {
     margin: .5rem;
 }
 
-.novisible{
+.novisible {
     background-color: rgb(248, 197, 197);
+}
+
+.apuntados {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.evento-unido {
+    background-color: rgb(192, 252, 192);
+}
+
+.boton-evento {
+    background-color: aliceblue;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border: 2px solid black;
+}
+
+.boton-evento:hover {
+    /* background-color: dodgerblue; */
+    text-decoration: underline black;
+
+}
+
+.mostrar-ocultar {
+    border: none;
+    background-color: transparent;
+    color: dodgerblue;
+}
+
+.mostrar-ocultar:hover{
+    color: rgb(10, 109, 207);
 }

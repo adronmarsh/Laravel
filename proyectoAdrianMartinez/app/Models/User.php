@@ -25,7 +25,7 @@ class User extends Authenticatable
         'twitter',
         'instagram',
         'twitch',
-        // 'avatar',
+        'rol',
     ];
 
     /**
@@ -46,4 +46,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Conecta con los eventos del usuario
+    public function eventos()
+    {
+        return $this->hasMany(Event::class);
+    }
 }
