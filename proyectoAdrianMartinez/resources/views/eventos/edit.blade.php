@@ -19,7 +19,7 @@
                 <input type="text" name="location" value="{{ $evento->location }}">
 
                 <label for="hour">Hora:</label>
-                <input type="text" name="hour" value="{{ $evento->hour }}">
+                <input type="time" name="hour" value="{{ $evento->hour }}">
 
                 <label for="date">Fecha:</label>
                 <input type="date" name="date" value="{{ $evento->date }}"  min="{{ date('Y-m-d') }}" min="{{ date('Y-m-d') }}" max="2999-12-31">

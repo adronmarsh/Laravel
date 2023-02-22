@@ -53,7 +53,7 @@ class EventController extends Controller
             $date = DateTime::createFromFormat('Y-m-d', $request->get('date'));
 
             if ($date !== false) {
-                $eventos->birthday = $date->format('Y-m-d');
+                $eventos->date = $date->format('Y-m-d');
             } else {
                 return redirect('/eventos');
             }
@@ -108,7 +108,7 @@ class EventController extends Controller
         $date = DateTime::createFromFormat('Y-m-d', $request->get('date'));
 
         if ($date !== false) {
-            $evento->birthday = $date->format('Y-m-d');
+            $evento->date = $date->format('Y-m-d');
         } else {
             return view('eventos.show', compact('evento'));
         }
@@ -133,6 +133,8 @@ class EventController extends Controller
      */
     public function destroy(Event $evento)
     {
+        // Elimina los miembros asociados al evento antes de eliminarlo
+        $evento->miembros()->detach();
         $evento->delete();
         return redirect()->route('eventos.index');
     }
