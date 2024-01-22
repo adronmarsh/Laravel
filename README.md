@@ -13,14 +13,15 @@ Instalación
 
 Solucionar errores github
 -----------
-#### crear archivo .env
+#### Crear archivo .env
 
 ##### Windows
     composer install
 
-##### linux
+##### Linux
     php composer.phar install
 
+##### 
     php artisan key:generate
 
 
